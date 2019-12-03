@@ -1,29 +1,36 @@
 const inquirer = require("inquirer")
 
 const initialQuestion = [
-    {
-        Name: "input",
-        name: "github",
-        message: "What is the name of the item you want to Post"
-    },
+
     {
         type: "list",
-        name: "color",
-        message: "What is your favorite color?",
-        choices: ["red", "blue", "green", "pink"]
+        name: "postOrBid",
+        message: "Do you want to post or to bid?",
+        choices: ["POST AN ITEM", "BID ON AN ITEM"]
     }
 ];
 
-const bidQuestions = [
+const postQuestion = [
+
     {
-        Name: "input",
-        name: "github",
-        message: "What is the name of the item you want to Post"
+        type: "input",
+        name: "name",
+        message: "What is the item name?",
     },
     {
-        type: "list",
-        name: "color",
-        message: "What is your favorite color?",
-        choices: ["red", "blue", "green", "pink"]
+        type: "input",
+        name: "price",
+        message: "What should be the minimum bid?"
     }
+
 ];
+
+inquirer.prompt(initialQuestion).then(function (answers) {
+    if (answers.postOrBid == "POST AN ITEM") {
+
+        inquirer.prompt(postQuestion).then(function (answers) {
+
+            console.log(answers)
+        })
+    }
+})
